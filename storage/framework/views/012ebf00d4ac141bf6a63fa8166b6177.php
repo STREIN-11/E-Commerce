@@ -1,0 +1,49 @@
+<?php $__env->startSection('title', 'Admin Login'); ?>
+
+<?php $__env->startSection('content'); ?>
+<nav class="nav">
+    <div class="nav-brand">
+        <div class="brand-logo">A</div>
+        <div class="brand-text">
+            <div class="brand-name">Laravel Assessment</div>
+            <div class="brand-tagline">Multi-Auth System</div>
+        </div>
+    </div>
+    <div class="nav-center">
+        <div class="nav-links">
+            <a href="/" class="nav-link">🏠 Home</a>
+            <a href="<?php echo e(route('customer.login')); ?>" class="nav-link">👤 Customer Login</a>
+        </div>
+    </div>
+    <div class="nav-right">
+        <a href="<?php echo e(route('admin.register')); ?>" class="btn">Register as Admin</a>
+    </div>
+</nav>
+
+<h1>Admin Login</h1>
+
+<?php if($errors->any()): ?>
+    <div class="alert alert-danger">
+        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <p><?php echo e($error); ?></p>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+<?php endif; ?>
+
+<form method="POST" action="<?php echo e(route('admin.login')); ?>">
+    <?php echo csrf_field(); ?>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<?php echo e(old('email')); ?>" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    
+    <button type="submit" class="btn">Login</button>
+</form>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\subha\OneDrive\Desktop\Assesment\resources\views/admin/login.blade.php ENDPATH**/ ?>

@@ -1,0 +1,21 @@
+name,description,price,category,stock,image
+"Wireless Bluetooth Headphones","High-quality wireless headphones with noise cancellation",79.99,"Electronics",150,
+"Programming Book - Laravel","Complete guide to Laravel development",45.50,"Books",75,"laravel-book.jpg"
+"Cotton T-Shirt","Comfortable cotton t-shirt in various colors",19.99,"Clothing",200,
+"Coffee Maker","Automatic drip coffee maker with programmable timer",89.99,"Home",50,"coffee-maker.jpg"
+"Yoga Mat","Non-slip yoga mat for exercise and meditation",29.99,"Sports",100,
+"Smartphone Case","Protective case for latest smartphone models",15.99,"Electronics",300,
+"Cookbook - Italian Cuisine","Traditional Italian recipes and cooking techniques",32.99,"Books",40,
+"Running Shoes","Lightweight running shoes with cushioned sole",99.99,"Sports",80,"running-shoes.jpg"
+"Desk Lamp","LED desk lamp with adjustable brightness",39.99,"Home",60,
+"Wireless Mouse","Ergonomic wireless mouse with long battery life",25.99,"Electronics",120,
+"Fiction Novel","Bestselling fiction novel by popular author",14.99,"Books",90,
+"Kitchen Knife Set","Professional kitchen knife set with wooden block",149.99,"Home",25,"knife-set.jpg"
+"Bluetooth Speaker","Portable Bluetooth speaker with waterproof design",59.99,"Electronics",85,
+"Jeans","Classic blue jeans in various sizes",49.99,"Clothing",110,
+"Fitness Tracker","Smart fitness tracker with heart rate monitor",129.99,"Sports",70,"fitness-tracker.jpg"
+"Tablet Stand","Adjustable tablet stand for desk use",22.99,"Electronics",95,
+"Recipe Journal","Blank recipe journal for cooking enthusiasts",18.99,"Books",55,
+"Throw Pillow","Decorative throw pillow for living room",24.99,"Home",140,
+"Water Bottle","Insulated water bottle keeps drinks cold/hot",19.99,"Sports",180,
+"Phone Charger","Fast charging cable for smartphones",12.99,"Electronics",250,"phone-charger.jpg"
