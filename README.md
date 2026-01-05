@@ -1,4 +1,4 @@
-# Laravel Assessment - Multi-Auth, WebSockets & Bulk Import
+## Laravel Assessment - Multi-Auth, WebSockets & Bulk Import
 
 A secure and optimized Laravel web application demonstrating multi-authentication, real-time updates using websockets, and efficient large-scale product import using Laravel queues and batch processing.
 
