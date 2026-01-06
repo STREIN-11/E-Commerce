@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function () {
         
         Route::get('products-import', [ProductController::class, 'showImport'])->name('admin.products.import');
         Route::post('products-import', [ProductController::class, 'import']);
+        Route::post('user-offline', [AdminAuthController::class, 'setUserOffline']);
     });
 });
 

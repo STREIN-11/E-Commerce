@@ -154,5 +154,6 @@
             user: @auth @json(auth()->user()) @else null @endauth
         };
     </script>
+    @vite(['resources/js/app.js'])
 </body>
 </html>

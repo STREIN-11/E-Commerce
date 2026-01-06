@@ -45,9 +45,7 @@
 <div class="online-users">
     <h3>Online Users (Real-time)</h3>
     <div id="online-users-list">
-        @foreach($onlineUsers as $user)
-            <span class="user-status">{{ $user->name }} ({{ ucfirst($user->type) }})</span>
-        @endforeach
+        <span class="user-status">Connecting...</span>
     </div>
 </div>
 
@@ -60,51 +58,55 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Echo for real-time presence
-    if (window.Echo) {
-        window.Echo.join('presence.admin')
-            .here((users) => {
-                updateOnlineUsers(users);
-            })
-            .joining((user) => {
-                console.log('User joining:', user);
-                addOnlineUser(user);
-            })
-            .leaving((user) => {
-                console.log('User leaving:', user);
-                removeOnlineUser(user);
-            });
+    const container = document.getElementById('online-users-list');
+    let users = new Set();
+    
+    // Load initial users from server
+    @foreach($onlineUsers as $user)
+        users.add('{{ $user->name }} ({{ ucfirst($user->type) }})');
+    @endforeach
+    updateDisplay();
+    
+    setTimeout(() => {
+        if (window.Echo) {
+            console.log('Echo connected, listening for events...');
+            
+            window.Echo.channel('online-users')
+                .listen('.user-online', (e) => {
+                    console.log('User online event:', e);
+                    addUser(e.user);
+                })
+                .listen('.user-offline', (e) => {
+                    console.log('User offline event:', e);
+                    removeUser(e.user);
+                });
+        }
+    }, 1000);
+    
+    function addUser(user) {
+        const userStr = `${user.name} (${user.type.charAt(0).toUpperCase() + user.type.slice(1)})`;
+        users.add(userStr);
+        updateDisplay();
     }
     
-    function updateOnlineUsers(users) {
-        const container = document.getElementById('online-users-list');
+    function removeUser(user) {
+        const userStr = `${user.name} (${user.type.charAt(0).toUpperCase() + user.type.slice(1)})`;
+        users.delete(userStr);
+        updateDisplay();
+    }
+    
+    function updateDisplay() {
         container.innerHTML = '';
-        users.forEach(user => {
+        if (users.size === 0) {
+            container.innerHTML = '<span class="user-status">No users online</span>';
+            return;
+        }
+        users.forEach(userStr => {
             const span = document.createElement('span');
             span.className = 'user-status';
-            span.textContent = `${user.name} (${user.type.charAt(0).toUpperCase() + user.type.slice(1)})`;
-            span.id = `user-${user.id}`;
+            span.textContent = userStr;
             container.appendChild(span);
         });
-    }
-    
-    function addOnlineUser(user) {
-        const container = document.getElementById('online-users-list');
-        const existing = document.getElementById(`user-${user.id}`);
-        if (!existing) {
-            const span = document.createElement('span');
-            span.className = 'user-status';
-            span.textContent = `${user.name} (${user.type.charAt(0).toUpperCase() + user.type.slice(1)})`;
-            span.id = `user-${user.id}`;
-            container.appendChild(span);
-        }
-    }
-    
-    function removeOnlineUser(user) {
-        const element = document.getElementById(`user-${user.id}`);
-        if (element) {
-            element.remove();
-        }
     }
 });
 </script>

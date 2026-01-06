@@ -26,6 +26,13 @@ class CustomerAuthController extends Controller
             $user = Auth::guard('customer')->user();
             $user->update(['is_online' => true, 'last_seen_at' => now()]);
             
+            // Store user ID in session for broadcast auth
+            $request->session()->put('customer_user_id', $user->id);
+            
+            // Broadcast user online event
+            broadcast(new \App\Events\UserOnline($user))->toOthers();
+            \Log::info('Customer logged in: ' . $user->name);
+            
             return redirect()->route('customer.dashboard');
         }
 
@@ -63,7 +70,13 @@ class CustomerAuthController extends Controller
         $user = Auth::guard('customer')->user();
         if ($user) {
             $user->update(['is_online' => false, 'last_seen_at' => now()]);
+            
+            // Broadcast user offline event
+            broadcast(new \App\Events\UserOffline($user));
         }
+        
+        // Remove from session
+        request()->session()->forget('customer_user_id');
         
         Auth::guard('customer')->logout();
         return redirect()->route('customer.login');

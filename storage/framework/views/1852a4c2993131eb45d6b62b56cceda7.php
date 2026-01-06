@@ -154,5 +154,6 @@
             user: <?php if(auth()->guard()->check()): ?> <?php echo json_encode(auth()->user(), 15, 512) ?> <?php else: ?> null <?php endif; ?>
         };
     </script>
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.js']); ?>
 </body>
 </html><?php /**PATH C:\Users\subha\OneDrive\Desktop\Pro\E-Commerce\resources\views/layouts/app.blade.php ENDPATH**/ ?>

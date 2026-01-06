@@ -1,6 +1,8 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.js",
+    "file": "assets/app-BHCsiTgW.js",
+    "name": "app",
+    "src": "resources/js/app.js",
     "isEntry": true
   }
 }
